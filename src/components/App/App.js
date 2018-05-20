@@ -37,9 +37,23 @@ class App extends Component {
         pics: response.data,
       });
     }).catch((error) => {
-        console.log(error);
+      console.log(error);
     });
   }
+
+  handleLike = (id) => (event) => {
+    axios({
+      method: 'PUT',
+      url: '/gallery/like/' + id,
+      // params: {
+      //     id: this.props.item.id,
+      // },
+    }).then((response) => {
+      this.getGallery();
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
 
   componentDidMount = () => {
     this.getGallery();
@@ -49,13 +63,13 @@ class App extends Component {
     console.log(this.state.pics);
     return (
       <MuiThemeProvider theme={myTheme}>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Gallery of my life</h1>
-        </header>
-        <br/>
-        <GalleryList gallery={this.state.pics} myTheme={myTheme}/>
-      </div>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Gallery of my life</h1>
+          </header>
+          <br />
+          <GalleryList gallery={this.state.pics} myTheme={myTheme} handleLike={this.handleLike}/>
+        </div>
       </MuiThemeProvider>
     );
   }

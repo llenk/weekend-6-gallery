@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ImageOrText from '../ImageOrText/ImageOrText';
 
-
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -20,6 +19,7 @@ const styles = {
 };
 
 class GalleryCard extends Component {
+    
     render(props) {
         return (
             <MuiThemeProvider theme={this.props.myTheme}>
@@ -31,7 +31,10 @@ class GalleryCard extends Component {
                         </p>
                     </CardContent>
                     <CardActions>
-                        <ThumbUp className={this.props.classes.icon}>
+                        <ThumbUp 
+                            className={this.props.classes.icon} 
+                            onClick={this.props.handleLike(this.props.item.id)}
+                            color="secondary">
                         </ThumbUp>
                     </CardActions>
                 </Card>

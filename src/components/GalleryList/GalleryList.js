@@ -8,7 +8,7 @@ class GalleryList extends Component {
     return (
       <MuiThemeProvider theme={this.props.myTheme}>
       <div className="GalleryList">
-        {this.props.gallery.map(gal=><GalleryCard key={gal.id} item={gal} myTheme={this.props.myTheme}/>)}
+        {this.props.gallery.map(gal=><GalleryCard key={gal.id} item={gal} myTheme={this.props.myTheme} handleLike={this.props.handleLike}/>)}
       </div>
       </MuiThemeProvider>
     );

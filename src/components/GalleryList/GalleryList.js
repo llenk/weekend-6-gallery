@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import GalleryCard from '../GalleryCard/GalleryCard';
+
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 class GalleryList extends Component {
   render(props) {
     return (
+      <MuiThemeProvider theme={this.props.myTheme}>
       <div className="GalleryList">
-        {this.props.gallery.map(gal=><img key={gal.id} src={gal.path} alt={gal.description}/>)}
+        {this.props.gallery.map(gal=><GalleryCard key={gal.id} item={gal} myTheme={this.props.myTheme}/>)}
       </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -3,13 +3,29 @@ import axios from 'axios';
 import './App.css';
 import GalleryList from '../GalleryList/GalleryList';
 
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { createMuiTheme } from '@material-ui/core/styles';
+import teal300 from '@material-ui/core/colors/teal';
+import pink from '@material-ui/core/colors/pink';
+import deepPurpleA400 from '@material-ui/core/colors/deepPurple';
+
+const myTheme = createMuiTheme({
+  palette: {
+    primary: deepPurpleA400,
+    secondary: pink,
+    error: teal300,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  }
+});
+
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       pics: [],
     };
-    this.getGallery();
   }
 
   getGallery() {
@@ -25,16 +41,22 @@ class App extends Component {
     });
   }
 
+  componentDidMount = () => {
+    this.getGallery();
+  }
+
   render() {
     console.log(this.state.pics);
     return (
+      <MuiThemeProvider theme={myTheme}>
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Gallery of my life</h1>
         </header>
         <br/>
-        <GalleryList gallery={this.state.pics}/>
+        <GalleryList gallery={this.state.pics} myTheme={myTheme}/>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
